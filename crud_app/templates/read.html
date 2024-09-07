@@ -1,0 +1,36 @@
+{% extends "common/base.html" %}
+
+{% block content %}
+
+<div class="bg-white p-6 rounded-lg shadow-md mt-6">
+    <h2 class="text-xl font-semibold mb-4">Item List</h2>
+    <table class="min-w-full bg-white">
+        <thead>
+            <tr>
+                <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                <th class="py-2 px-4 border-b border-gray-200 bg-gray-50"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in all_data %}
+            <tr>
+                <a href=""><td class="py-2 px-4 border-b border-gray-200">{{ item.name }}</td></a>
+                <td class="py-2 px-4 border-b border-gray-200">{{ item.description }}</td>
+                <td class="py-2 px-4 border-b border-gray-200">
+                    <a href="{% url 'update' item.id %}" class="text-blue-500 hover:text-blue-700 mr-2">Edit</a>
+                    <a href="{% url 'singel' item.id %}" class="text-blue-500 hover:text-blue-700 mr-2">View</a>
+                    <a href="/delete/{{ item.id }}" class="text-red-500 hover:text-red-700">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add' %}" class="text-green-500 hover:text-blue-700 font-semibold"><button>Add</button></a> |
+
+</div>
+
+
+
+
+{% endblock content %}
